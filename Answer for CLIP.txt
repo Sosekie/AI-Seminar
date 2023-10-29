@@ -1,0 +1,79 @@
+1. 
+
+P2
+
+Both approaches also use static softmax classifiers to perform prediction and lack a mechanism for dynamic outputs. This severely curtails their flexibility and limits their “zero-shot” capabilities.
+
+A crucial difference between these weakly supervised models and recent explorations of learning image representations directly from natural language is scale.
+
+2.
+
+P2
+
+3.
+
+P3
+
+Natural language supervision does not require annotations to be in a classic “machine learning compatible format” such as the canonical 1-of-N majority vote “gold label”.
+
+it doesn’t “just” learn a representation but also connects that representation to language which enables flexible zero-shot transfer.
+
+4.
+
+P3
+
+we constructed a new dataset of 400 million (image, text) pairs collected form a variety of publicly available sources on the Internet. To attempt to cover as broad a set of visual concepts as possible, we search for (image, text) pairs as part of the construction process whose text includes one of a set of 500,000 queries. Balance the results by including up to 20,000 (image, text) pairs per query.
+
+5.
+
+P4
+
+shortage: 
+Previous approaches try to predict the exact words of the text accompanying each image. This is a difficult task due to the wide variety of descriptions, comments, and related text that co-occur with images.
+
+advantages:
+Recent work in contrastive representation learning for images has found that contrastive objectives can learn better representations than their equivalent predictive objective.
+
+we explored training a system to solve the potentially easier proxy task of predicting only which text as a whole is paired with which image and not the exact words of that text.
+
+Starting with the same bag-of-words encoding baseline, we swapped the predictive objective for a contrastive objective in Figure 2 and observed a further 4x efficiency improvement in the rate of zero-shot transfer to ImageNet.
+
+6.
+
+P6
+
+zero-shot learning usually refers to the study of generalizing to unseen object categories in image classification.
+
+We instead use the term in a broader sense and study generalization to unseen datasets. We motivate this as a proxy for performing unseen tasks. we motivate studying zero-shot transfer as a way of measuring the tasklearning capabilities of machine learning systems.
+
+7.
+
+P7
+
+In Table 1 we compare Visual N-Grams to CLIP. The best CLIP model improves accuracy on ImageNet from a proof of concept 11.5% to 76.2% and matches the performance of the original ResNet-50 despite using none of the 1.28 million crowd-labeled training examples available for this dataset.
+
+The ability to match the performance of a strong, fully supervised baselines in a zero-shot setting suggests CLIP is a significant step towards flexible and practical zero-shot computer vision classifiers. 
+
+8.
+
+P7
+
+polysemy. When the name of a class is the only information provided to CLIP’s text encoder it is unable to differentiate which word sense is meant due to the lack of context.
+
+In some cases multiple meanings of the same word might be included as different classes in the same dataset!
+
+9.
+
+P8
+
+zero-shot performance can be significantly improved by customizing the prompt text to each task. 
+
+“A photo of a {label}, a type of pet.”
+“a satellite photo of a {label}.”
+
+10.
+
+This is likely due to an important difference between the zero-shot and few-shot approach. First, CLIP’s zero-shot classifier is generated via natural language which allows for visual concepts to be directly specified (“communicated”). By contrast, “normal” supervised learning must infer concepts indirectly from training examples. Context-less example-based learning has the drawback that many different hypotheses can be consistent with the data, especially in the one-shot case. A single image often contains many different visual concepts. Although a capable learner is able to exploit visual cues and heuristics, such as assuming that the concept being demonstrated is the primary object in an image, there is no guarantee.
+
+
+

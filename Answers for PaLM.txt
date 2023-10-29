@@ -1,0 +1,82 @@
+1. What is the main shortcoming with BERT and T5 pointed out by the authors?
+
+P3
+
+Although these models have achieved near universal state of the art across thousands of natural language tasks, the downside is that they require a significant number of task-specific training examples to finetune the model. Additionally, at least a portion of the model parameters must be updated to fit the task, adding complexity from model finetuning and deployment.
+
+2. What innovation did GPT-3 introduce?
+
+P3
+
+GPT-3 (Brown et al., 2020) demonstrated that extremely large autoregressive language models (LMs) can be used for few-shot predictions, where the model is only given a natural language task description and (optionally) a handful of exemplars demonstrating how the task should be completed.
+
+3. What were the key ideas exploited by Large Language Models to beat GPT-3?
+
+P3
+
+all of which achieved few-shot state-of-the-art results on a significant number of tasks at the time of their release.1 Like GPT-3, these models are all variants of the Transformer architecture (Vaswani et al., 2017). The improvements in these models have primarily come from one or more of the following approaches: (1) scaling the size of the models in both depth and width; (2) increasing the number of tokens that the model was trained on; (3) training on cleaner datasets from more diverse sources; and (4) increasing model capacity without increasing the computational cost through sparsely activated modules.  
+
+4. What loss did they use to train the model? What task does it solve?
+
+P10
+
+Loss function – The model is trained with the standard language modeling loss function, which is the average log probability of all tokens without label smoothing.
+
+negative log-likelihood loss, cross-entropy loss
+
+Why close to zero? A softmax normaliser close to zero means that the model's probabilities are more evenly distributed across words or tokens, without being overly biased in favour of one word or token. This can help prevent problems such as gradient vanishing or gradient explosion during training, and improve training stability.
+
+The coefficient 10^(-4) * log2 Z in the auxiliary loss term is typically used to balance the importance of this loss term, and its value is relatively small to ensure that the main loss function remains the standard negative log-likelihood loss.
+
+In summary, by introducing this additional auxiliary loss term, it is possible to improve the stability of the training model, reduce the occurrence of gradient problems, and help the model learn the language modelling task better. 
+
+BIG-bench is a collaborative benchmark aimed at producing challenging tasks for large language models (BIG-bench collaboration, 2021).6 It includes over 150 tasks that cover a variety of language modeling tasks including logical reasoning, translation, question answering, mathematics, and others.
+
+5. Explain the results shown in Figure 3.
+
+P15
+
+Model Parameters， few-shot
+
+You can see that the performance of the model is significantly enhanced when both the number of Model Parameters and the number of few-shots are increased.
+
+6. Describe the tasks goal step wikihow, logical args and english proverbs.; 7. Describe the tasks logical sequence, navigate and mathematical induction.
+
+P16
+
+goal step wikihow - The goal is to reason about goal-step relationship between events. Example: Input: In order to ”clean silver,” which step should be done first? (a) dry the silver (b) handwash the silver Answer: (b) handwash the silver
+
+
+logical args – The goal is to predict the correct logical inference from a passage. Example: Input: Students told the substitute teacher they were learning trigonometry. The substitute told them that instead of teaching them useless facts about triangles, he would instead teach them how to work with probabilities. What is he implying? (a) He believes that mathematics does not need to be useful to be interesting. (b) He thinks understanding probabilities is more useful than trigonometry. (c) He believes that probability theory is a useless subject. Answer: (b) He thinks understanding probabilities is more useful than trigonometry.
+
+english proverbs – The goal is to guess which proverb best describes a text passage. Example: Input: Vanessa spent lots of years helping out on weekends at the local center for homeless aid. Recently, when she lost her job, the center was ready to offer her a new job right away. Which of the following proverbs best apply to this situation? (a) Curses, like chickens, come home to roost. (b) Where there is smoke there is fire (c) As you sow, so you shall reap. Answer: (c) As you sow, so you shall reap.
+
+8. Explain what important conclusion can be derived from the plots in Figure 5.
+
+P16
+
+We can see in Figure 5 that performance on goal step wikihow and logical args follows a log-linear scaling curve, with the PaLM 540B model achieving accuracy close to the best human performance. Performance on english proverbs and logical sequence is also extremely strong, but it follows a discontinuous improvement curve—the improvement from 62B → 540B is much larger than 8b → 62B. Such tasks are of particular interest here, because such scaling curves imply that certain capabilities of the model only emerge once a certain scale is reached. For example, english proverbs requires a very high level of abstract reasoning capability to understand complex metaphors, so the improvement from 25% for PaLM 62B to 87% for PaLM 540B is an extremely exciting result.
+
+9. Describe the cause and effect tasks. What are the authors trying to test with this task?
+
+P18
+
+cause and effect (one sentence no prompt) – In one sentence no prompt subtask, the events are combined into one sentence in two different orderings, and the log-likelihood of each sentence is scored with the model. No prompt is provided. Example: Input A: I washed the car because my car got dirty. Input B: My car got dirty because I washed the car. Higher-Likelihood Sentence: I washed the car because my car got dirty. 
+
+cause and effect (two sentence) – In two sentence subtask, the model is shown two events and needs to select which sentence corresponds to the event which caused the other. Example: Input: For each example, two events are given. Which event caused the other? (a) My car got dirty. (b) I washed the car. Correct Prediction: (a) My car got dirty.
+
+One of the tasks, periodic elements, is memorization-heavy, thereby leveraging memorization capability of large language models. Most other tasks, such as common morpheme, sufficient information, and logical args, emphasize impressive natural language processing capabilities of PaLM 540B. To illustrate this point further, we consider the cause and effect task, which asks the model to determine which of two presented events caused the other.
+
+We find that all the PaLM models perform well on the one sentence no prompt version of this task, with the 8B model achieving over 80% accuracy, but the smaller PaLM models perform poorly on the two sentence version of this task, with the 8B model scoring close to random chance. In contrast, the 540B model is able to solve the two sentence version and achieves over 90% accuracy, demonstrating the general language modeling capabilities that scale can unlock.
+
+10. Describe the Arithmetic and Commonsense reasoning tasks.
+
+P20
+
+Arithmetic reasoning – These tasks often involve grade-school level natural language math problems which require multi-step logical inference. The math itself is typically trivial, and the difficult part is transforming the natural language into mathematical equations. In this work, we evaluated both the calculator form and direct inference form, where the model itself performs the math. Input: Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now? Answer: The answer is 11. 
+
+Commonsense reasoning – These tasks are question answering tasks which require strong world knowledge, but are not simply factual question answering. Rather, they require chaining multiple logical inferences about the world. Input: Q: Sean was in a rush to get home, but the light turned yellow and he was forced to do what? Answer Choices: (a) take time (b) dawdle (c) go slowly (d) ocean (e) slow down Answer: The answer is (e) slow down.
+
+11. What is the chain-of-thoughts prompting technique? Use Figure 8 to illustrate it. Why do the authors consider it?
+
+P20

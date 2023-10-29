@@ -1,0 +1,70 @@
+1. What is the problem addressed by this paper and what is the motivation to address it?
+
+P1
+transformers are often remarkably insensitive to word order
+different word orders correspond to wildly different visual depictions should be reflected in the capabilities of our models.
+
+2. What is Winoground?
+
+P1
+It's a dataset, for measuring visio-linguistic compositional reasoning, whereby two images and two captions have to be matched correctly; both captions contain exactly the same set of words, ordered in such a way that each describes primarily one of the images.
+
+3. What is the main finding of the paper? What does it tell us?
+
+P2
+Surprisingly, all of the models rarely—and if so only barely—outperform chance. Our findings indicate that the visio-linguistic compositional reasoning capabilities of these models fall dramatically short of what we might have hoped.
+This suggests that transformers use high-level word co-occurence statistics, which gives the illusion of an understanding of word order.
+
+4. 
+
+P2
+The Winograd Schema Challenge [44] was named after a coreference resolution problem presented by Terry Winograd [85]. The goal is to correctly resolve (an) ambiguous referent(s) in two English sentences. The sentences have a minor difference that changes how a human resolves the referent. Winograd schema examples are easily handled by humans, and commonsense reasoning is said to be required [4]. For example, in the sentence “The city councilmen refused the demonstrators a permit because they [feared/advocated] violence”, the pronoun they can either refer to the councilmen or to the demonstrators depending on which word is chosen.
+
+5.
+
+Winoground was hand-crafted by expert annotators and is labeled with a rich set of fine-grained tags to assist in analyzing model performance. 
+
+Let (C0, I0) and (C1, I1) be two image-caption pairs. An example satisfies the Winoground schema if and only if: 
+• (C0, I0) and (C1, I1) are preferred by the annotator over (C1, I0) and (C0, I1); and
+• C0 and C1 have the same words and/or morphemes but the order differs.
+The annotators created a total of 70 linguistic tags for the swaps that make caption pairs different. This set of tags can be split into three broad groups: objects, relations, and swaps involving both relations and objects. Object swaps reorder elements such as noun phrases that tend to refer to objects in the real world. Relation swaps reorder elements such as verbs, adjectives, prepositions, and/or adverbs, which tend to take nouns referring to objects as semantic arguments [2]. 
+
+Separately, the annotators tagged examples for how many main predicates were in the captions, which is not dependent on the specific swap happening between the two captions. For example, “left is blue and right is red” has two main predicates and “water is in a bottle” has one main predicate. It turned out that all examples in Winoground have either one main predicate or two.
+
+6.
+
+P4
+This metric tests whether the ground truth caption for a given image in our dataset is scored higher than the alternative caption and whether this holds for the other image/caption pair in the example too.
+This metric tests whether the ground truth image for a given caption is scored higher than the image corresponding to the alternative caption and whether this holds vice versa.
+So, we also evaluate using the group score, where every combination for a given example.
+both should be right.
+
+7.
+
+P5
+Like the models, annotators are shown one image and one caption at a time. Annotators are asked the binary choice question “Does the caption match the image?”. We compute the human image-caption score as the ratio of annotators who said the image/caption pair match over the total number of annotators for the pair.
+
+to establish a more conservative human baseline than the expert annotator upper bound of a perfect score.
+
+8.
+
+P5, P6
+As shown in Tab. 3, the models struggle across the board on Winoground, often performing close to or below random chance. Comparatively, as expected, the human performance is high across the full range of linguistic and visual phenomena.
+
+9.
+
+P6, P7
+
+We also evaluate performance for the visual reasoning tags as shown in Tab. 5. Models and humans are particularly good at the symbolic examples, but the models are poor comparatively. On the pragmatics tag, humans have the lowest performance. Ten crowdworkers probably didn’t capture slight pragmatics preferences that our expert linguist annotators agreed on.
+
+10.
+
+P6
+Heat maps. We show a heatmap in Fig. 4 of the wordregion alignment between ViLT’s vision and language features as a visualization for a model with some of the better performance on our dataset. ViLLA and UNITER are also trained with word-region alignment and we provide their heatmaps in Appendix D.
+P8
+Word-region alignment scores between the image and text features for ViLT [40] on examples from Winoground. In this case study, ViLT appears to disregard the information from adjectives. E.g., the heatmaps highlight the brown dog just as strongly regardless of whether the text was “brown dog” or “white dog”.
+
+11.
+
+give a bunch of sentence, which replaced the adjectives, like color or shape, to improve the performance of model in describe adj.
+
