@@ -1,0 +1,66 @@
+1.
+
+P1
+
+across vision, NLP, and multimodal domains and show impressive performance
+
+P4
+
+For downstream tasks, classification heads are applied on the outputs from the image, text, and multimodal encoders respectively for visual recognition, language understanding, and multimodal reasoning tasks.
+
+2.
+
+P2
+
+use smaller dataset to compatitive
+Table 1. size of dataset
+Table 4. result
+
+3.
+
+we pretrain the image encoder and text of encoder both use the ViT architecture and we use the MIM loss and the MLM loss to train the transformer, then we get the feature and let them go through a linear layer and calculate the GC loss, that means global contrast loss same like clip, using the cosine similarity. Then we concanate the feature and put it into the multimodal transformer and we in get the output feature and calculate the ITM lost, which means match or not, and MMM lost means we masked some parts predict what index of it is true.
+
+4.
+
+P4
+
+GC: we maximize the cosine similarities between matched image and text pairs and minimize those for the unmatched pairs.
+
+5.
+
+P4
+
+Masked image modeling (MIM), Masked language modeling (MLM)
+
+6.
+
+P3
+
+For downstream tasks, classification heads are applied on the outputs from the image, text, and multimodal encoders respectively for visual recognition, language understanding, and multimodal reasoning tasks.
+
+7.
+
+P6
+
+8.
+
+P7
+
+This can be attributed to mostly two factors: different model details of FLAVA (e.g. 768 text encoder hidden size instead of 512) and performing global back-propagation across all GPU workers as mentioned in Sec. 3.2.
+
+9.
+
+P8
+
+FLAVA is pretrained using a much smaller dataset compared to 1.8B image-text pairs in [109], and we anticipate that FLAVA’s performance will further heavily improve as the pretraining dataset size increases.
+
+10.
+
+P7
+
+In Fig. 4, we observe that FLAVA works significantly better on language and multimodal tasks while slightly worse than CLIP on some vision-only tasks.
+
+
+
+
+
