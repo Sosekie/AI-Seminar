@@ -1,0 +1,59 @@
+1. How does few-shot learning work? Use Figure 1 to explain it.
+
+P2
+
+give some questions and answer for finetune and transfer the model to downstream tasks.
+
+2. What kind of input can FLAMINGO take and what outputs does it produce?
+
+P6
+
+text, images and video.
+
+text.
+
+3. What is the main novelty in FLAMINGO? Use Figure 3 to illustrate it.
+
+
+
+4. Explain eq. (1). What is the meaning of each term?
+
+
+
+5. How does the perceiver resampler address inputs of different sizes?
+
+P5
+
+It takes as input a variable number of image or video features from the vision encoder and produces a fixed number of visual outputs.
+
+6. Describe how the M3W dataset is built.
+
+P6
+
+7. Describe eq. (2) and the meaning of each term.
+
+P6
+
+8. What do we learn from Table 3?
+
+P8
+
+9. What are the main limitations of using frozen LMs?
+
+P10
+
+play a role in occasional hallucinations and ungrounded guesses
+
+generalise poorly to sequences longer than the training ones. 
+
+They also suffer from poor sample efficiency during training.
+
+10. What are the possible negative societal impacts of FLAMINGO?
+
+P10
+
+Flamingo is exposed to the same risks as large language models, such as outputting offensive language, propagating social biases and stereotypes, as well as leaking private information
+
+Its ability to additionally handle visual inputs poses specific risks such as gender and racial biases relating to the contents of the input images
+
+
