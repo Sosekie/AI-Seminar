@@ -1,0 +1,25 @@
+Selection of Papers
+
+1. It's Time for Artistic Correspondence in Music and Video
+It proposed a solution to the video soundtrack problem using a transformer.
+https://arxiv.org/abs/2206.07148
+CVPR 2022
+
+2. CLaMP: Contrastive Language-Music Pre-training for Cross-Modal Symbolic Music Information Retrieval
+Similar to the CLIP work, a language-score pretraining model was trained.
+https://arxiv.org/abs/2304.11029
+ISMIR 2023
+
+3. An Empirical Study of Training End-to-End Vision-and-Language Transformers
+About Co-attention model and Merged attention model, very interesting.
+https://arxiv.org/abs/2111.02387
+CVPR 2022
+
+4. Align before Fuse: Vision and Language Representation Learning with Momentum Distillation
+ALBEF, borrowing the bert model for modal fusion, classical work.
+https://arxiv.org/abs/2107.07651
+CVPR 2021
+
+5. Content-Based Music-Image Retrieval Using Self- and Cross-Modal Feature Embedding Memory
+https://openaccess.thecvf.com/content/WACV2023/papers/Nakatsuka_Content-Based_Music-Image_Retrieval_Using_Self-_and_Cross-Modal_Feature_Embedding_Memory_WACV_2023_paper.pdf
+IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), 2023
