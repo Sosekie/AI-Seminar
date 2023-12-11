@@ -10,7 +10,7 @@ support learning a better world representation (from e.g. vision and text), by f
 
 3. What is Contrastive Span Training?
 
-4. Describe the VCR task and what do we learn from Figure 2?
+4. Describe the VCR task and what do we learn from Table 2?
 
 5. Why is the model performing better at TVQA when the captions (text) and the audio are used separately during training?
 
