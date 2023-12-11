@@ -1,0 +1,17 @@
+Answers for MerlotReserve
+
+1. What is learning from reentry?
+
+learning connections between all senses as they interact with the world
+
+support learning a better world representation (from e.g. vision and text), by forcing models to abstract away from raw perceptual input.
+
+2. Describe the Reserve model and architecture. Use also Figure 2 to assist your description.
+
+3. What is Contrastive Span Training?
+
+4. Describe the VCR task and what do we learn from Figure 2?
+
+5. Why is the model performing better at TVQA when the captions (text) and the audio are used separately during training?
+
+6. Explain how audio and text help the model to learn by using Figure 5.
