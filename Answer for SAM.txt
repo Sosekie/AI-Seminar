@@ -1,0 +1,23 @@
+Answer for SAM
+
+1. What is the promptable segmentation task?
+
+P4
+
+The promptable segmentation task, then, is to return a valid segmentation mask given any prompt. The requirement of a “valid” mask simply means that even when a prompt is ambiguous and could refer to multiple objects (e.g., recall the shirt vs. person example, and see Fig. 3), the output should be a reasonable mask for at least one of those objects.
+
+2. How do the authors define the model in SAM?
+
+P5
+
+3. What is the main issue with the data in SAM and how do the authors solve it?
+
+a large and diverse set of masks, beyond any segmentation dataset that already exists. While a typical approach for foundation models is to obtain data online [82], masks are not naturally abundant and thus we need an alternative strategy.
+
+4. Why do the authors perform a Responsible AI analysis?
+
+Together, we hope this will make our work more equitable for real-world use cases.
+
+5. Describe the zero-shot text-to-mask task and the results shown by the authors.
+
+P11
